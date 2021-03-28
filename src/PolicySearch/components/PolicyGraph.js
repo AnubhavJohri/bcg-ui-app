@@ -25,6 +25,7 @@ const PolicyGraph = () =>{
 
     useEffect( ()=>{
         //Gets All Regions Present in data to show in the dropdown
+        dispatch(resetPoliciesPerRegion());
         dispatch(getAllRegions());
     } , [])
 
