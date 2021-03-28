@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart } from 'primereact/chart' 
+import { Chart } from 'primereact/chart';
 
 export default function PrimeBarChart(props){
     const { dataset, region } = props;
@@ -14,6 +14,14 @@ export default function PrimeBarChart(props){
             backgroundColor: '#00beac',
             borderWidth : 2,
             data: dataset
+        },{
+            type: 'line',
+            borderColor : '#ffc107',
+            label:'Number',
+            data: dataset,
+            borderWidth: 1.5,
+            fill : false,
+            legend : false
         }]
     }
 
@@ -35,7 +43,7 @@ export default function PrimeBarChart(props){
 
     return(
         <div style={{height:'500px', width:'800px'}}>
-            {(dataset&&dataset.length>0)?<Chart type='bar' data={data} options={options}/>:<span>No Data to Display</span>}
+            {(dataset&&dataset.length>0)?<Chart type='bar' data={data} options={options}/>:<span>No Data To Display!</span>}
         </div>
     )
 }

@@ -3,7 +3,8 @@ import {
     GET_POLICY_ID_DETAILS_SUCCESS,
     RESET_POLICY_DETAILS,
     SAVE_NEW_POLICY_DETAILS_ERROR,
-    SAVE_NEW_POLICY_DETAILS_SUCCESS } from "../actions/constants";
+    SAVE_NEW_POLICY_DETAILS_SUCCESS,
+    RESET_SAVE_POLICY_DETAILS_SUCCESS_ERROR_MESSAGE } from "../actions/constants";
 
 const initialState = () =>{
     return {
@@ -46,6 +47,12 @@ const policySearchReducer = ( state = initialState(), action ) =>{
                 ...state,
                 savePolicyDetailsSuccess : '',
                 savePolicyDetailsError : action.payload
+            }
+        case RESET_SAVE_POLICY_DETAILS_SUCCESS_ERROR_MESSAGE:
+            return {
+                ...state,
+                savePolicyDetailsSuccess : '',
+                savePolicyDetailsError : ''
             }
         default:
             return {...state}

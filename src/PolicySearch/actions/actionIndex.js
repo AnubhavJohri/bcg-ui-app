@@ -5,6 +5,7 @@ import {
     GET_POLICY_ID_DETAILS,
     RESET_POLICY_DETAILS,
     SAVE_NEW_POLICY_DETAILS,
+    RESET_SAVE_POLICY_DETAILS_SUCCESS_ERROR_MESSAGE
  } from './constants'
 
 export const getAllRegions = () =>{
@@ -43,5 +44,11 @@ export const saveNewPolicyDetails = ( newDetails ) =>{
     return {
         type : SAVE_NEW_POLICY_DETAILS,
         payload : newDetails
+    }
+}
+
+export const resetSavePolicyDetailsSuccessErrorMessage = (  ) =>{
+    return {
+        type : RESET_SAVE_POLICY_DETAILS_SUCCESS_ERROR_MESSAGE,
     }
 }
