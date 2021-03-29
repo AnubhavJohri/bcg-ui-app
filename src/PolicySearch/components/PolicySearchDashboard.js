@@ -1,3 +1,7 @@
+/**
+ * Screen that displays the Policy Search option and 
+ * lets the user update the premium value in the database
+ */
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { InputText} from 'primereact/inputtext';
@@ -15,9 +19,13 @@ const PolicySearchDashboard = () =>{
     const [ isSearchBtnClicked, setIsSearchBtnClicked ] = useState(false);
     const dispatch = useDispatch();
 
+    //Used to get the currently selected policy details
     const receivedPolicyDetails = useSelector(state=> state && state.policySearchReducer && state.policySearchReducer.receivedPolicyDetails);
+    //Used to get the currently selected policy details error message
     const receivedPolicyDetailsErrorMessage = useSelector(state=> state && state.policySearchReducer && state.policySearchReducer.receivedPolicyError);
+    //Used to get the success message once we have tried to update the policy details
     const savePolicyDetailsSuccessMessage = useSelector(state=> state && state.policySearchReducer && state.policySearchReducer.savePolicyDetailsSuccess);
+    //Used to get the error message once we have tried to update the policy details
     const savePolicyDetailsErrorMessage = useSelector(state=> state && state.policySearchReducer && state.policySearchReducer.savePolicyDetailsError);
     
     useEffect(()=>receivedPolicyDetails&&setPremiumValue(receivedPolicyDetails.premiumAmount), [receivedPolicyDetails])
@@ -26,7 +34,13 @@ const PolicySearchDashboard = () =>{
         if(receivedPolicyDetailsErrorMessage||receivedPolicyDetails) setIsSearchBtnClicked(false)
     },[ receivedPolicyDetails, receivedPolicyDetailsErrorMessage ])
     
-
+    /**
+     * Triggered when we click on the search button after typing 
+     * the policy-id
+     * 
+     * Used to reset all the values related to the previous search
+     * and initiate call for the next search to get new details
+     */
     function handleSearchClick(){
         setPremiumValueError('');
         setIsSearchBtnClicked(true);
@@ -34,6 +48,13 @@ const PolicySearchDashboard = () =>{
         dispatch(getPolicyDetails(searchText));
     }
 
+    /**
+     * Triggered when we click on Save button of the policy details
+     * form
+     * 
+     * Used to reset some success/error messages and 
+     * initiate a call to the server to save the new pokicy details
+     */
     function handleSubmit(e){
         e.preventDefault();
         const postOb = {
@@ -44,6 +65,12 @@ const PolicySearchDashboard = () =>{
         dispatch(saveNewPolicyDetails(postOb));
     }
 
+    /**
+     * Triggered when we change the value in input-text of
+     * Premium Amount. 
+     * 
+     * Used to set the errors used for validations and unset them
+     */
     function handlePremiumAmountChange(e){
         const value = e.target.value;
         if(Number(value) > 1000000) setPremiumValueError(`Premium amount can't exceed 1 million`);
@@ -53,11 +80,11 @@ const PolicySearchDashboard = () =>{
     }
 
     return(<div>
+        {/* Used to change the tab title according to convenience */}
         <DocumentTitle title='PolicyReco | Find Policy'/>
         <h3 className='text-center display-4'>Policy Search Dashboard</h3>
-        {/* <div style={{padding:'30px 100px'}}> */}
         <div className='container'>
-            {/* <div style={{padding: '0px 90px 30px 222px'}}> */}
+            {/* Contains the input field and search button */}
             <div className='row align-items-center' style={{padding: '20px 0'}}>
                 <div className='col-lg-8 offset-lg-2 col-10 col-sm-6'>
                 <span className="p-input-icon-left">
@@ -80,6 +107,8 @@ const PolicySearchDashboard = () =>{
                     <p id="errorMessage" disabled className="text-danger"><small>{receivedPolicyDetailsErrorMessage}</small></p>
                 </div>
             </div>
+            {/* Policy Details Form displayed when we have searched
+            for a particular policy-id */}
             {receivedPolicyDetails?<div className='row align-items-center'>
                 <div className='col-lg-8 offset-lg-2 col-10 col-sm-6'>
                     <form className="card-body" onSubmit={handleSubmit} style={{marginTop: '15px',border: '0.5px solid lightgray', borderRadius: '6px'}}>

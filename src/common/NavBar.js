@@ -1,3 +1,7 @@
+/**
+ * Navbar Component
+ * Component that you see as a header at the top
+ */
 import React from 'react';
 import { Navbar} from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';

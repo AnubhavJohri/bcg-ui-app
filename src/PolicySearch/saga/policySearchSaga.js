@@ -1,3 +1,6 @@
+/**
+ * Used to handle all the side-effects amd make API calls
+ */
 import axios from '../../API/api';
 import { takeLatest, put} from 'redux-saga/effects';
 import { 
@@ -8,6 +11,10 @@ import {
     SAVE_NEW_POLICY_DETAILS_SUCCESS,
     SAVE_NEW_POLICY_DETAILS_ERROR } from '../actions/constants';
 
+/**
+ * Used to fetch the policy details of a particular
+ * policy-id based on the input policy-id 
+ */
 function* getPolicyIdDetails(action){
     try{
         const id = action.payload;
@@ -28,6 +35,10 @@ function* getPolicyIdDetails(action){
     }
 }
 
+/**
+ * Used to save the new policy details. Sends the
+ * updated details to the server for storing 
+ */
 function* saveNewPolicyDetails(action){
     const id = action.payload.policyId;
     try{
@@ -48,7 +59,9 @@ function* saveNewPolicyDetails(action){
     }
 }
 
-
+/**
+ * Main Saga driver function where a dispatched action lands to.
+ */
 export default function* policySearchSaga() {
     yield takeLatest( GET_POLICY_ID_DETAILS, getPolicyIdDetails );
     yield takeLatest( SAVE_NEW_POLICY_DETAILS, saveNewPolicyDetails );

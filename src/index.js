@@ -6,6 +6,12 @@ import store from "./store/index";
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 
+/**
+ * Entry Point of the React app
+ * Provider provides an interface between React app and Redux store. One can only use Redux store
+ * after getting access of the app through Provider component
+ * <App/> is the actual point of entry
+ */
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

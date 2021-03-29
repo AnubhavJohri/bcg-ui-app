@@ -1,3 +1,10 @@
+/**
+ * Bar Chart Common Component
+ * Takes in dataset to be displayed as input and region selected
+ * Displays the Bar Chart
+ * 
+ * REUSABLE COMPONENT
+ */
 import React from 'react';
 import { Chart } from 'primereact/chart';
 

@@ -1,3 +1,13 @@
+/**
+ * File Stores all the generally used utility functions
+ * to increase the reusability of the code
+ */
+
+/**
+ * Functions takes a date object stored in the ISO format
+ * and converts it into yyyy-mm-dd format
+ * returns that value
+ */
 export function getRightDateFormat(dtISO){
     const dt = new Date(dtISO).toLocaleDateString();
     const arr = dt.split('/');

@@ -9,7 +9,13 @@ import PolicySearchDashboard from "./PolicySearch/components/PolicySearchDashboa
 import PolicyGraph from "./PolicySearch/components/PolicyGraph";
 import Navbar from "./common/NavBar";
 
-
+/**
+ * Responsible for routing on the entire application
+ * Initiall when app loads takes to the /home url
+ * which opens Policy Search screen
+ * 
+ * All the css and bootstrap files are imported here
+ */
 class App extends Component {
 
   render() {
