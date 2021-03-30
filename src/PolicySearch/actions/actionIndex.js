@@ -20,7 +20,7 @@ export const getAllRegions = () =>{
 
 /**
  * 2.)
- * Used to make call to server to fetch policies/month per region
+ * Used to make call to server to fetch number of policies sold/month per region
  */
 export const getPoliciesPerRegion = (region) =>{
     return {
@@ -31,7 +31,8 @@ export const getPoliciesPerRegion = (region) =>{
 
 /**
  * 3.)
- * Used to reset all the current values holding the policies/region/month in redux store
+ * Used to reset all the current values holding the number of policies/region/month
+ * data in redux store
  */
 export const resetPoliciesPerRegion = () =>{
     return {

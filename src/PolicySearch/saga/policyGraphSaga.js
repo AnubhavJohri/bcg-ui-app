@@ -13,11 +13,17 @@ import {
  import axios from "../../API/api";
 
 /**
+ * 1.)
  * Used to get all Unique regions from the server and
  * set the success/error message according to the response
  */
 function* getAllRegions(){
     try{
+        /**
+         * 1.)
+         * When screen mounts first time, it fetches all unique places
+         * from the REST API
+         */
         const regions = yield axios.get('getAllRegions')
         .then(data=>data.data)
         .catch(err=>{
@@ -30,9 +36,14 @@ function* getAllRegions(){
         if(regions&&regions.data){
             const regionsArr = []
             for( const r in regions.data) regionsArr.push(`${r[0].toUpperCase()}${r.substr(1)}`);
-            console.log('got the data of all regions', regionsArr, regions.data);
-            yield put({ type: GET_ALL_REGIONS_IN_DATA_SUCCESS, payload : regionsArr });
 
+            yield put({ type: GET_ALL_REGIONS_IN_DATA_SUCCESS, payload : regionsArr });
+            /**
+             * 2.)
+             * Once you get all the unique regions and it's pushed to dropdown, we make
+             * a call to sever to fetch number of policies/month of the first region that
+             * will be displayed in the dropdown when screen mounts
+             */
             yield* getPolicyDataOfARegion({payload : regionsArr[0]});
         }
 
@@ -42,6 +53,7 @@ function* getAllRegions(){
 }
 
 /**
+ * 2.)
  * Used to get the number of policies per month
  * in that region and used to set the success/error message
  * accordingly

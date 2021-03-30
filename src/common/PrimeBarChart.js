@@ -1,7 +1,11 @@
 /**
  * Bar Chart Common Component
  * Takes in dataset to be displayed as input and region selected
- * Displays the Bar Chart
+ * Displays the Bar Chart. Uses PrimeReact chart library to show
+ * the bar chart
+ * 
+ * X-Axis :- All 12 months
+ * Y-Axis :- Number of policies sold/month
  * 
  * REUSABLE COMPONENT
  */

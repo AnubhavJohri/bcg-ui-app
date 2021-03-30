@@ -78,6 +78,7 @@ const PolicyGraph = () =>{
             style={{width:'200px'}} /> : null }
             {(policiesPerRegion&&selectedRegion)?<PrimeBarChart dataset={getPoliciesPerRegionDataset(policiesPerRegion)} region={selectedRegion} />:
             <div style={{height:'500px', width:'800px'}}>
+            {/* Used to show loading progress while data is being loaded from API */}
                 <ProgressSpinner 
                 style={{width: '150px', height: '150px', marginTop:'100px', marginLeft:'300px'}} 
                 strokeWidth="2" 
